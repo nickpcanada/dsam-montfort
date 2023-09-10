@@ -6,9 +6,10 @@ The goal is to learn some programming fundamentals by messing around with some e
 
 # Instructions
 
-_NB: The numbered instructions below are only slightly modified from Montfort's, which begin on page 33. My variations will appear in bold._
 
 ## Part 1: Find the code
+
+_NB: The numbered instructions below are only slightly modified from Montfort's, which begin on page 33. My variations will appear in bold._
 
 1. Go to **[nickm.com/memslam/a_house_of_dust.html](https://nickm.com/memslam/a_house_of_dust.html), where Montfort has recreated a 1967 script by Alison Knowles and James Tenney. Watch for a minute to see how the page works.**
 
@@ -28,7 +29,7 @@ Find the file in your computer's system (e.g. Finder on Mac, or Explorer on Wind
 
 ## Part 2: Change the code
 
-We're now up to Montfort's section 3.3.
+We're now up to Montfort's [section 3.3](https://mitpress.ublish.com/ebook/epah2e-preview/12629/34).
 
 1. Head back into your text editor and look for the words in all caps: 'SAND', 'DUST', etc.
 
@@ -47,7 +48,7 @@ We're now up to Montfort's section 3.3.
 
 ## Part 3: Explore the possibilities
 
-We're now up to Montfort's Free Project 3-1, copied below. By "the six listed previously," Montfort means one of these, and I actually do recommend sticking to these for now (you can always try something else at home):
+We're now up to Montfort's [Free Project 3-1](https://mitpress.ublish.com/ebook/epah2e-preview/12629/36), copied below. By "the six listed previously," Montfort means one of these, and I actually do recommend sticking to these for now (you can always try something else at home):
 
 * [nickm.com/poems/perverbs.html](https://nickm.com/poems/perverbs.html)
 * [nickm.com/poems/upstart.html](https://nickm.com/poems/upstart.html)
