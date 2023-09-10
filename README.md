@@ -1,4 +1,4 @@
-# Preamble
+# Playing with programming... and poetry
 
 In this repository, we're going to continue practicing with GitHub – and now also try out the exercises in [chapter 3, "Modifying a Program," from _Exploratory Programming for the Arts and Humanities_ (2nd edition)](https://mitpress.ublish.com/ebook/epah2e-preview/12629/31) by Nick Montfort.
 
