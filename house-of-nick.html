@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+	The House of Dust reimplementation
+	copyright (c) 2014, 2024 Nick Montfort <nickm@nickm.com>
+	based on a 1967 program by Alison Knowles and James Tenney
+
+	Copying and distribution of this file, with or without modification,
+	are permitted in any medium without royalty provided the copyright
+	notice and this notice are preserved. This file is offered as-is,
+	without any warranty.
+	-->
+	<style>
+		body {
+			margin: 0;
+			font-family: monospace;
+			font-size: clamp(1rem, 1vw, 1.5rem);
+			overflow:hidden;
+		}
+		header {
+			background: #ddd;
+			margin: 0;
+			border-bottom: #eee solid .2rem;
+			width: 100%;
+			height: 5.2rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1000;
+		}
+		header > h1 {
+			padding: .3rem .8rem .2rem .8rem;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', 
+				serif;
+			font-size: .85rem;
+			font-weight: normal;
+			white-space: nowrap;
+		}
+		a {
+			text-decoration: none;
+			color: #b00;
+		}
+		#main {
+			padding: 8rem 6vw 3vh 6vw;
+		}
+	</style>
+	<script>
+		var t = 0, caps = false, pause = false;
+
+		const tab = '  ', // two non-breaking spaces, U+00A0
+		// four would be more accurate, but to make this work well on mobile
+		// and need to wrap lines less frequently, two will do
+		material = ['oranges', 'orange trees', 'orange juice'],
+		place = ['In an orange grove', 'Near a giant orange', 'With an orange'],
+		light_source = ['orange light', 'light from an orange', 'an orange eater emanating light'],
+		inhabitants = ['Nim Chimpsky', 'the chimp who talked about oranges', 'the chimp whose whole life revolved around oranges'];
+
+		function fullscreenListeners(f)
+		{
+			f("mozfullscreenchange", fullscreenEvt);
+			f("MSFullscreenChange", fullscreenEvt);
+			f("fullscreenchange", fullscreenEvt);
+			f("webkitfullscreenchange", fullscreenEvt);
+		}
+
+		function fullscreenEvt(incomingReq)
+		{
+			fullscreenListeners(document.removeEventListener);
+			if(incomingReq === true || document.mozFullScreen || 
+			document.fullscreenElement || document.webkitIsFullScreen || 
+			document.msFullscreenElement) {
+				var fsElt;
+				if(window.c instanceof HTMLCanvasElement) fsElt = window.c;
+				else fsElt = document.documentElement;
+				if (fsElt.requestFullscreen) fsElt.requestFullscreen();
+				else if (fsElt.msRequestFullscreen) fsElt.msRequestFullscreen();
+				else if (fsElt.mozRequestFullScreen)
+					fsElt.mozRequestFullScreen();
+				else if (fsElt.webkitRequestFullScreen) 
+					fsElt.webkitRequestFullScreen();
+				nav.style.display = "none";
+				main.style.paddingTop = "0";
+			}
+			else nav.style.display = "block";
+			main.style.paddingTop = "8rem";
+			if (typeof l === "function") setTimeout(l, 200);
+			fullscreenListeners(document.addEventListener);
+		}
+
+		function pick(array) {
+			var i = Math.floor(Math.random() * (array.length));
+			return array[i];
+		}
+
+		function stanza() {
+			return 'A house of ' + pick(material) + '<br>' +
+					tab +pick(place) + '<br>' +
+					tab + tab + 'Using ' + pick(light_source) + '<br>' + 
+					tab + tab + tab + 'Inhabited by ' + pick(inhabitants) + 
+					'<br><br>';
+		}
+
+		function nextText() {
+			var last, text, main = document.getElementById('main');
+			if (pause) setTimeout(nextText, 300);
+			else {
+				if (35 > t) t += 1;
+				else main.removeChild(main.firstChild);
+				last = document.createElement('p');
+				last.innerHTML = caps ? stanza().toUpperCase() : stanza();
+				main.appendChild(last);
+				main.lastChild.scrollIntoView({block:"end", behavior:"smooth"});
+				setTimeout(nextText, 8000);
+			}
+		}
+	</script>
+  <title>Knowles and Tenney’s The House of Dust (Reimplementation)</title>
+</head>
+<body onload=nextText()>
+	<header id=nav>
+		<h1>
+			<span style="float: right; font-size: 150%; clear:both"><a id=pb 
+			onclick="pause=!pause;pb.style.color=pause?'black':'red'">⏸</a>
+			<a id=cl 
+			onclick="caps=!caps;cl.style.color=caps?'black':'red'">⇪</a> 
+			<a onclick=fullscreenEvt(true)>⛶</a>
+			</span>
+			The House of Dust (1967)<br>
+			based on a work by 
+		<a href="https://monoskop.org/Alison_Knowles">Alison Knowles</a> &amp; 
+		<a href="https://en.wikipedia.org/wiki/James_Tenney">James Tenney</a>
+			<br>
+			code by <a href="https://nickm.com">Nick Montfort,</a> 
+			also in <a href="the_house_of_dust.py">Python 2/3</a><br>
+			from <a href="https://nickm.com/memslam/">Memory Slam 2.0:</a> 
+			Batch-Era Text Generators
+		</h1>
+	</header>
+	<div id=main></div>
+</body>
+</html>
